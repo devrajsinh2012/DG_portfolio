@@ -1,0 +1,257 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --background: 215 100% 95%;
+    --foreground: 222 47% 11%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+ 
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+ 
+    --primary: 221 70% 11%;
+    --primary-foreground: 210 40% 98%;
+ 
+    --secondary: 170 100% 70%;
+    --secondary-foreground: 222 47% 11%;
+ 
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+ 
+    --accent: 170 100% 70%;
+    --accent-foreground: 222 47% 11%;
+ 
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222 47% 11%;
+ 
+    --radius: 0.5rem;
+    
+    /* Custom theme variables */
+    --color-primary: var(--color-primary, #0a192f);
+    --color-secondary: var(--color-secondary, #64ffda);
+    --color-background: var(--color-background, #0a192f);
+    --color-text-primary: var(--color-text-primary, #ccd6f6);
+    --color-text-secondary: var(--color-text-secondary, #8892b0);
+    --color-accent: var(--color-accent, #64ffda);
+    
+    --font-heading: var(--font-heading, 'Montserrat, sans-serif');
+    --font-body: var(--font-body, 'Open Sans, sans-serif');
+    --font-mono: var(--font-mono, 'Fira Code, monospace');
+    
+    --animations-enabled: var(--animations-enabled, all);
+    --animation-speed-factor: var(--animation-speed-factor, 1);
+    --animation-intensity-factor: var(--animation-intensity-factor, 1);
+    
+    --layout-max-width: var(--layout-max-width, 1200px);
+    --spacing-factor: var(--spacing-factor, 1);
+  }
+ 
+  .dark {
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+ 
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+ 
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+ 
+    --primary: 210 40% 98%;
+    --primary-foreground: 222 47% 11%;
+ 
+    --secondary: 170 100% 70%;
+    --secondary-foreground: 222 47% 11%;
+ 
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+ 
+    --accent: 170 100% 70%;
+    --accent-foreground: 222 47% 11%;
+ 
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+ 
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: var(--font-body);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+    font-family: var(--font-heading);
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl;
+  }
+  
+  h4 {
+    @apply text-xl md:text-2xl;
+  }
+  
+  p {
+    @apply text-base md:text-lg;
+  }
+  
+  code, pre, .font-mono {
+    font-family: var(--font-mono);
+  }
+}
+
+/* Custom animations and styles */
+@layer components {
+  .hero-heading {
+    @apply relative inline-block pb-2 text-4xl md:text-5xl lg:text-6xl font-bold;
+    color: var(--color-text-primary);
+  }
+  
+  .hero-heading::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-1 w-2/3 transition-all duration-300;
+    background-color: var(--color-secondary);
+  }
+
+  .nav-link {
+    @apply relative py-2 px-1 text-sm transition-all duration-300;
+    font-family: var(--font-mono);
+    color: var(--color-text-secondary);
+  }
+  
+  .nav-link:hover {
+    color: var(--color-accent);
+  }
+  
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300;
+    background-color: var(--color-accent);
+  }
+  
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+  
+  .section-heading {
+    @apply flex items-center text-2xl md:text-3xl font-bold mb-8;
+    color: var(--color-text-primary);
+  }
+  
+  .section-heading::after {
+    content: '';
+    @apply ml-4 h-px flex-grow;
+    background-color: var(--color-primary);
+  }
+  
+  .btn-primary {
+    @apply px-5 py-3 rounded border bg-transparent text-sm transition-all duration-300;
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+  }
+  
+  .btn-primary:hover {
+    background-color: rgba(100, 255, 218, 0.1);
+  }
+  
+  .card {
+    @apply relative p-6 rounded-lg border transition-all duration-300 hover:translate-y-[-5px];
+    border-color: var(--color-primary);
+    background-color: rgba(26, 41, 73, 0.5);
+  }
+  
+  .timeline-item {
+    @apply relative pl-8 pb-8 border-l;
+    border-color: var(--color-primary);
+  }
+  
+  .timeline-item::before {
+    content: '';
+    @apply absolute top-0 left-[-5px] w-[10px] h-[10px] rounded-full;
+    background-color: var(--color-accent);
+  }
+  
+  .skill-bar {
+    @apply h-1 rounded-full overflow-hidden;
+    background-color: var(--color-primary);
+  }
+  
+  .skill-progress {
+    @apply h-full rounded-full;
+    background-color: var(--color-accent);
+  }
+
+  /* Animation classes */
+  .animate-delay-100 {
+    animation-delay: calc(100ms * var(--animation-speed-factor, 1));
+  }
+  
+  .animate-delay-200 {
+    animation-delay: calc(200ms * var(--animation-speed-factor, 1));
+  }
+  
+  .animate-delay-300 {
+    animation-delay: calc(300ms * var(--animation-speed-factor, 1));
+  }
+  
+  .animate-delay-400 {
+    animation-delay: calc(400ms * var(--animation-speed-factor, 1));
+  }
+  
+  .animate-delay-500 {
+    animation-delay: calc(500ms * var(--animation-speed-factor, 1));
+  }
+  
+  /* Custom animations that respect user settings */
+  @keyframes customFadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @keyframes customSlideUp {
+    0% { 
+      transform: translateY(calc(100px * var(--animation-intensity-factor, 1))); 
+      opacity: 0; 
+    }
+    100% { 
+      transform: translateY(0); 
+      opacity: 1; 
+    }
+  }
+  
+  .animate-custom-fade-in {
+    animation: customFadeIn calc(500ms * var(--animation-speed-factor, 1)) ease-in-out forwards;
+    animation-play-state: var(--animations-enabled, running);
+  }
+  
+  .animate-custom-slide-up {
+    animation: customSlideUp calc(500ms * var(--animation-speed-factor, 1)) ease-in-out forwards;
+    animation-play-state: var(--animations-enabled, running);
+  }
+}
