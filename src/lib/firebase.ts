@@ -1,11 +1,16 @@
+
 // Import the Firebase SDK
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 // Create mock storage implementation to avoid compatibility issues
 const mockStorage = {
-  ref: () => ({
-    put: async () => ({ ref: { getDownloadURL: async () => "https://placeholder-image.com/image.jpg" } }),
+  ref: (path) => ({
+    put: async (file) => ({ 
+      ref: { 
+        getDownloadURL: async () => `https://placeholder-image.com/${file.name || 'image.jpg'}` 
+      } 
+    }),
     getDownloadURL: async () => "https://placeholder-image.com/image.jpg",
     delete: async () => true,
     listAll: async () => ({ items: [], prefixes: [] }),
