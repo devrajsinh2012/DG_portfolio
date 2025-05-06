@@ -84,7 +84,7 @@ export function SkillsSection() {
                 variants={containerVariants}
                 initial="hidden"
                 animate={isInView ? "visible" : "hidden"}
-                className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full"
               >
                 {category.items.map((skill) => (
                   <motion.div
@@ -140,7 +140,7 @@ export function SkillsSection() {
                   <div className="w-[40%] h-[40%] rounded-full border border-slate/40"></div>
                   <div className="w-[20%] h-[20%] rounded-full border border-slate/50"></div>
                 </div>
-                
+
                 {/* Axis lines */}
                 <div className="absolute inset-0">
                   {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
@@ -153,7 +153,7 @@ export function SkillsSection() {
                     ></div>
                   ))}
                 </div>
-                
+
                 {/* Radar chart points with labels */}
                 {skills.slice(0, 1).flatMap((category) =>
                   category.items.slice(0, 8).map((skill, index, array) => {
@@ -162,12 +162,12 @@ export function SkillsSection() {
                     const radius = (skill.proficiency / 100) * 40; // 40% of container
                     const x = 50 + radius * Math.cos(angle);
                     const y = 50 + radius * Math.sin(angle);
-                    
+
                     // Calculate position for label
                     const labelRadius = 42; // slightly outside the chart
                     const labelX = 50 + labelRadius * Math.cos(angle);
                     const labelY = 50 + labelRadius * Math.sin(angle);
-                    
+
                     return (
                       <React.Fragment key={skill.name}>
                         <div
@@ -192,13 +192,13 @@ export function SkillsSection() {
                     );
                   })
                 )}
-                
+
                 {/* Create a polygon for each skill category */}
                 <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
                   {skills.map((category, categoryIndex) => {
                     const items = category.items.slice(0, 8);
                     if (items.length < 3) return null; // Need at least 3 points for a polygon
-                    
+
                     // Choose a different color for each category
                     const colors = [
                       "rgba(100, 255, 218, 0.2)",  // teal
@@ -206,14 +206,14 @@ export function SkillsSection() {
                       "rgba(200, 100, 255, 0.2)",  // purple
                       "rgba(255, 100, 200, 0.2)",  // pink
                     ];
-                    
+
                     const strokeColors = [
                       "rgba(100, 255, 218, 0.7)",
                       "rgba(100, 200, 255, 0.7)",
                       "rgba(200, 100, 255, 0.7)",
                       "rgba(255, 100, 200, 0.7)",
                     ];
-                    
+
                     const points = items.map((skill, index, array) => {
                       const totalItems = Math.min(array.length, 8);
                       const angle = (index * (360 / totalItems) * Math.PI) / 180;
@@ -222,7 +222,7 @@ export function SkillsSection() {
                       const y = 50 + radius * Math.sin(angle);
                       return `${x},${y}`;
                     }).join(" ");
-                    
+
                     return (
                       <polygon
                         key={category.category}
@@ -237,7 +237,7 @@ export function SkillsSection() {
               </div>
             </div>
           </div>
-          
+
           <div className="mt-4 flex flex-wrap justify-center gap-4">
             {skills.map((category, index) => (
               <div 

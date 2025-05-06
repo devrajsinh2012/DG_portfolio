@@ -68,7 +68,7 @@ export function SiteNavigation() {
       >
         <div className="container mx-auto flex items-center justify-between">
           {/* Logo */}
-          <a href="#home" className="text-xl md:text-2xl font-bold text-primary hover:text-teal transition-colors">
+          <a href="#home" className="text-xl md:text-2xl font-bold hover:text-teal transition-colors">
             <span className="text-teal">D</span>evrajsinh
           </a>
 

@@ -114,6 +114,7 @@ export function ProjectsSection() {
               <div
                 onClick={() => setSelectedProject(project.title)}
                 className="bg-navy-light rounded-lg p-6 h-full border border-navy-light hover:border-teal/30 transform hover:-translate-y-2 transition-all duration-300 cursor-pointer group"
+                style={{ minHeight: "280px", display: "flex", flexDirection: "column" }}
               >
                 {/* Project icon */}
                 <div className="flex justify-between items-center mb-4">
@@ -131,7 +132,7 @@ export function ProjectsSection() {
                   {project.description}
                 </p>
 
-                <div className="absolute bottom-6 left-6 right-6">
+                <div className="mt-auto">
                   <div className="flex flex-wrap gap-2 mt-4">
                     {project.technologies.map((tech) => (
                       <span
@@ -168,7 +169,7 @@ export function ProjectsSection() {
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.3 }}
                 style={{ 
-                  maxWidth: "calc(100vw - 32px)",
+                  maxWidth: "min(calc(100vw - 32px), 650px)",
                   margin: "0 auto"
                 }}
               >
