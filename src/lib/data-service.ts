@@ -1,135 +1,138 @@
-import { collection, doc, getDoc, getDocs, setDoc, updateDoc, deleteDoc } from "firebase/firestore";
-import { ref, uploadBytes, getDownloadURL, deleteObject } from "firebase/storage";
-import { db, storage } from "@/lib/firebase";
-import { uuidv4 } from "./uuid-helper";
-import defaultData from "@/data/portfolio-data";
 
-// Types
-import type { PortfolioData } from "@/data/portfolio-data";
+import { db, storage } from './firebase';
+import { collection, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { uuidv4 } from './uuid-helper';
+import { defaultPortfolioData } from '@/data/portfolio-data';
 
-// Get portfolio data
-export async function getPortfolioData(): Promise<PortfolioData> {
+// Main data fetching function
+export const fetchPortfolioData = async () => {
   try {
-    const docRef = doc(db, "portfolio", "main");
-    const docSnap = await getDoc(docRef);
-
+    const portfolioDocRef = doc(db, 'portfolios', 'main');
+    const docSnap = await getDoc(portfolioDocRef);
+    
     if (docSnap.exists()) {
-      return docSnap.data() as PortfolioData;
+      return docSnap.data();
     } else {
-      // Initialize with default data if not exists
-      await setDoc(docRef, defaultData);
-      return defaultData;
+      // Create default data if no data exists
+      await setDoc(portfolioDocRef, defaultPortfolioData);
+      return defaultPortfolioData;
     }
   } catch (error) {
-    console.error("Error fetching data:", error);
-    return defaultData;
+    console.error('Error fetching data:', error);
+    // Return default data if there's an error
+    return defaultPortfolioData;
   }
-}
+};
 
-// Update portfolio data
-export async function updatePortfolioData(
-  data: Partial<PortfolioData>
-): Promise<boolean> {
+// Update specific sections
+export const updatePersonalInfo = async (data) => {
   try {
-    const docRef = doc(db, "portfolio", "main");
-    await updateDoc(docRef, data);
+    const portfolioDocRef = doc(db, 'portfolios', 'main');
+    await updateDoc(portfolioDocRef, { personalInfo: data });
     return true;
   } catch (error) {
-    console.error("Error updating data:", error);
+    console.error('Error updating personal info:', error);
     return false;
   }
-}
+};
 
-// Upload image
-export async function uploadImage(file: File, path: string): Promise<string> {
+export const updateSkills = async (data) => {
   try {
-    const fileId = uuidv4();
-    const fileExtension = file.name.split(".").pop();
-    const fullPath = `${path}/${fileId}.${fileExtension}`;
-    const storageRef = ref(storage, fullPath);
-
-    await uploadBytes(storageRef, file);
-    const downloadURL = await getDownloadURL(storageRef);
-
-    return downloadURL;
-  } catch (error) {
-    console.error("Error uploading image:", error);
-    throw error;
-  }
-}
-
-// Delete image
-export async function deleteImage(url: string): Promise<boolean> {
-  try {
-    // Extract the path from the URL
-    const decodedUrl = decodeURIComponent(url);
-    const pathStartIndex = decodedUrl.indexOf("/o/") + 3;
-    const pathEndIndex = decodedUrl.indexOf("?");
-    const path = decodedUrl.substring(pathStartIndex, pathEndIndex);
-
-    const storageRef = ref(storage, path);
-    await deleteObject(storageRef);
-
+    const portfolioDocRef = doc(db, 'portfolios', 'main');
+    await updateDoc(portfolioDocRef, { skills: data });
     return true;
   } catch (error) {
-    console.error("Error deleting image:", error);
+    console.error('Error updating skills:', error);
     return false;
   }
-}
+};
 
-//The rest of the functions from original file are removed because they are replaced by the new functions above.
+export const updateExperience = async (data) => {
+  try {
+    const portfolioDocRef = doc(db, 'portfolios', 'main');
+    await updateDoc(portfolioDocRef, { experience: data });
+    return true;
+  } catch (error) {
+    console.error('Error updating experience:', error);
+    return false;
+  }
+};
 
+export const updateProjects = async (data) => {
+  try {
+    const portfolioDocRef = doc(db, 'portfolios', 'main');
+    await updateDoc(portfolioDocRef, { projects: data });
+    return true;
+  } catch (error) {
+    console.error('Error updating projects:', error);
+    return false;
+  }
+};
 
-// Media upload (This function is kept because it's different from uploadImage)
-export async function uploadMedia(file: File): Promise<string> {
+export const updateEducation = async (data) => {
+  try {
+    const portfolioDocRef = doc(db, 'portfolios', 'main');
+    await updateDoc(portfolioDocRef, { education: data });
+    return true;
+  } catch (error) {
+    console.error('Error updating education:', error);
+    return false;
+  }
+};
+
+export const updateContact = async (data) => {
+  try {
+    const portfolioDocRef = doc(db, 'portfolios', 'main');
+    await updateDoc(portfolioDocRef, { contact: data });
+    return true;
+  } catch (error) {
+    console.error('Error updating contact:', error);
+    return false;
+  }
+};
+
+export const updateWebsiteSettings = async (data) => {
+  try {
+    const portfolioDocRef = doc(db, 'portfolios', 'main');
+    await updateDoc(portfolioDocRef, { websiteSettings: data });
+    return true;
+  } catch (error) {
+    console.error('Error updating website settings:', error);
+    return false;
+  }
+};
+
+// Media upload helper
+export const uploadMedia = async (file) => {
   try {
     const fileId = uuidv4();
     const fileExtension = file.name.split('.').pop();
-    const filename = `${fileId}.${fileExtension}`;
-    const storageRef = ref(storage, `media/${filename}`);
-
+    const fileName = `${fileId}.${fileExtension}`;
+    const storageRef = ref(storage, `media/${fileName}`);
+    
     await uploadBytes(storageRef, file);
     const downloadURL = await getDownloadURL(storageRef);
-
-    return downloadURL;
+    
+    // Save media info to Firestore
+    const mediaCollectionRef = collection(db, 'media');
+    const mediaDocRef = doc(mediaCollectionRef, fileId);
+    await setDoc(mediaDocRef, {
+      id: fileId,
+      fileName: file.name,
+      fileType: file.type,
+      fileSize: file.size,
+      url: downloadURL,
+      createdAt: new Date().toISOString()
+    });
+    
+    return {
+      id: fileId,
+      url: downloadURL,
+      name: file.name
+    };
   } catch (error) {
-    console.error("Error uploading media:", error);
+    console.error('Error uploading media:', error);
     throw error;
   }
-}
-
-// List media files
-export async function listMedia() {
-  try {
-    const storageRef = ref(storage, 'media');
-    const result = await listAll(storageRef);
-
-    const mediaItems = await Promise.all(
-      result.items.map(async (itemRef) => {
-        const url = await getDownloadURL(itemRef);
-        return {
-          name: itemRef.name,
-          url,
-          fullPath: itemRef.fullPath
-        };
-      })
-    );
-
-    return mediaItems;
-  } catch (error) {
-    console.error("Error listing media:", error);
-    return [];
-  }
-}
-
-// Delete media file
-export async function deleteMedia(path: string) {
-  try {
-    const storageRef = ref(storage, path);
-    await deleteObject(storageRef);
-    return true;
-  } catch (error) {
-    console.error("Error deleting media:", error);
-    return false;
-  }
-}
+};
