@@ -162,11 +162,15 @@ export function ProjectsSection() {
               
               <motion.div
                 layoutId={selectedProject}
-                className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl bg-navy border border-navy-light rounded-lg p-8 z-50 max-h-[90vh] overflow-y-auto"
+                className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl bg-navy border border-navy-light rounded-lg p-8 z-50 max-h-[90vh] overflow-y-auto overflow-x-hidden"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.3 }}
+                style={{ 
+                  maxWidth: "calc(100vw - 32px)",
+                  margin: "0 auto"
+                }}
               >
                 {(() => {
                   const project = projects.find(p => p.title === selectedProject);

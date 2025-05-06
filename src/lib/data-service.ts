@@ -154,14 +154,16 @@ export async function fetchPortfolioData(): Promise<PortfolioData> {
     };
   } catch (error) {
     console.error("Error fetching data:", error);
-
-    // Fallback to localStorage if Firebase fails
+    // Fallback to localStorage to make the app work offline
     const localData = localStorage.getItem('portfolioData');
     if (localData) {
-      return JSON.parse(localData) as PortfolioData;
+      return JSON.parse(localData);
     }
-
-    // If all else fails, return initial data
+    console.log("Using initial data as fallback");
+    // Save initial data to localStorage for future use
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('portfolioData', JSON.stringify(initialData));
+    }
     return initialData;
   }
 }

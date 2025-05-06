@@ -1,8 +1,6 @@
 
-/**
- * Simple UUID v4 implementation without dependencies
- */
-export function uuidv4(): string {
+// Simple UUID v4 generator for client-side usage
+export function uuidv4() {
   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
     const r = Math.random() * 16 | 0;
     const v = c === 'x' ? r : (r & 0x3 | 0x8);

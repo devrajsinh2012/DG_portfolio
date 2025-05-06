@@ -2,7 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import { motion, AnimatePresence } from "framer-motion";
+import * as FM from "framer-motion";
+const motion = FM.motion;
+const AnimatePresence = FM.AnimatePresence;
 import { Menu, X, Moon, Sun, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LoginModal } from "@/components/admin/login-modal";
@@ -157,7 +159,7 @@ export function SiteNavigation() {
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
-            transition={{ type: "tween", duration: 0.3 }}
+            transition={{ duration: 0.3 }}
             className="fixed inset-y-0 right-0 z-40 w-3/4 bg-navy shadow-xl md:hidden"
           >
             <div className="flex flex-col h-full py-20 px-8">

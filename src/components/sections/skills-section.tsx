@@ -131,29 +131,46 @@ export function SkillsSection() {
         >
           <h3 className="text-xl font-bold text-slate-light mb-6 text-center">Skill Overview</h3>
           <div className="relative h-64">
-            {/* This is a simple visual representation - would be enhanced with real chart in production */}
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-full max-w-md">
-                <div className="radar-chart">
-                  {/* Concentric circles */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-[80%] h-[80%] rounded-full border border-slate/10"></div>
-                    <div className="w-[60%] h-[60%] rounded-full border border-slate/20"></div>
-                    <div className="w-[40%] h-[40%] rounded-full border border-slate/30"></div>
-                    <div className="w-[20%] h-[20%] rounded-full border border-slate/40"></div>
-                  </div>
-
-                  {/* Simulated radar chart points */}
-                  {skills.flatMap((category) =>
-                    category.items.map((skill, index, array) => {
-                      const angle = (index * (360 / array.length) * Math.PI) / 180;
-                      const radius = (skill.proficiency / 100) * 40; // 40% of container
-                      const x = 50 + radius * Math.cos(angle);
-                      const y = 50 + radius * Math.sin(angle);
-
-                      return (
+              <div className="w-full max-w-md h-full relative">
+                {/* Radar chart background */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="w-[80%] h-[80%] rounded-full border border-slate/20"></div>
+                  <div className="w-[60%] h-[60%] rounded-full border border-slate/30"></div>
+                  <div className="w-[40%] h-[40%] rounded-full border border-slate/40"></div>
+                  <div className="w-[20%] h-[20%] rounded-full border border-slate/50"></div>
+                </div>
+                
+                {/* Axis lines */}
+                <div className="absolute inset-0">
+                  {[0, 45, 90, 135, 180, 225, 270, 315].map((angle) => (
+                    <div
+                      key={angle}
+                      className="absolute top-1/2 left-1/2 w-[40%] h-[1px] bg-slate/20 origin-left"
+                      style={{
+                        transform: `translate(-50%, -50%) rotate(${angle}deg)`,
+                      }}
+                    ></div>
+                  ))}
+                </div>
+                
+                {/* Radar chart points with labels */}
+                {skills.slice(0, 1).flatMap((category) =>
+                  category.items.slice(0, 8).map((skill, index, array) => {
+                    const totalItems = Math.min(array.length, 8);
+                    const angle = (index * (360 / totalItems) * Math.PI) / 180;
+                    const radius = (skill.proficiency / 100) * 40; // 40% of container
+                    const x = 50 + radius * Math.cos(angle);
+                    const y = 50 + radius * Math.sin(angle);
+                    
+                    // Calculate position for label
+                    const labelRadius = 42; // slightly outside the chart
+                    const labelX = 50 + labelRadius * Math.cos(angle);
+                    const labelY = 50 + labelRadius * Math.sin(angle);
+                    
+                    return (
+                      <React.Fragment key={skill.name}>
                         <div
-                          key={skill.name}
                           className="absolute w-3 h-3 rounded-full bg-teal"
                           style={{
                             left: `${x}%`,
@@ -161,32 +178,85 @@ export function SkillsSection() {
                             transform: "translate(-50%, -50%)",
                           }}
                         ></div>
-                      );
-                    })
-                  )}
-
-                  {/* Connect the dots to form the radar shape */}
-                  <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
-                    <polygon
-                      points={skills
-                        .flatMap((category) =>
-                          category.items.map((skill, index, array) => {
-                            const angle = (index * (360 / array.length) * Math.PI) / 180;
-                            const radius = (skill.proficiency / 100) * 40;
-                            const x = 50 + radius * Math.cos(angle);
-                            const y = 50 + radius * Math.sin(angle);
-                            return `${x},${y}`;
-                          })
-                        )
-                        .join(" ")}
-                      fill="rgba(100, 255, 218, 0.1)"
-                      stroke="rgba(100, 255, 218, 0.5)"
-                      strokeWidth="0.5"
-                    />
-                  </svg>
-                </div>
+                        <div
+                          className="absolute text-xs text-teal font-mono"
+                          style={{
+                            left: `${labelX}%`,
+                            top: `${labelY}%`,
+                            transform: "translate(-50%, -50%)",
+                          }}
+                        >
+                          {skill.name}
+                        </div>
+                      </React.Fragment>
+                    );
+                  })
+                )}
+                
+                {/* Create a polygon for each skill category */}
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100">
+                  {skills.map((category, categoryIndex) => {
+                    const items = category.items.slice(0, 8);
+                    if (items.length < 3) return null; // Need at least 3 points for a polygon
+                    
+                    // Choose a different color for each category
+                    const colors = [
+                      "rgba(100, 255, 218, 0.2)",  // teal
+                      "rgba(100, 200, 255, 0.2)",  // blue
+                      "rgba(200, 100, 255, 0.2)",  // purple
+                      "rgba(255, 100, 200, 0.2)",  // pink
+                    ];
+                    
+                    const strokeColors = [
+                      "rgba(100, 255, 218, 0.7)",
+                      "rgba(100, 200, 255, 0.7)",
+                      "rgba(200, 100, 255, 0.7)",
+                      "rgba(255, 100, 200, 0.7)",
+                    ];
+                    
+                    const points = items.map((skill, index, array) => {
+                      const totalItems = Math.min(array.length, 8);
+                      const angle = (index * (360 / totalItems) * Math.PI) / 180;
+                      const radius = (skill.proficiency / 100) * 40;
+                      const x = 50 + radius * Math.cos(angle);
+                      const y = 50 + radius * Math.sin(angle);
+                      return `${x},${y}`;
+                    }).join(" ");
+                    
+                    return (
+                      <polygon
+                        key={category.category}
+                        points={points}
+                        fill={colors[categoryIndex % colors.length]}
+                        stroke={strokeColors[categoryIndex % strokeColors.length]}
+                        strokeWidth="0.8"
+                      />
+                    );
+                  })}
+                </svg>
               </div>
             </div>
+          </div>
+          
+          <div className="mt-4 flex flex-wrap justify-center gap-4">
+            {skills.map((category, index) => (
+              <div 
+                key={category.category}
+                className="flex items-center"
+              >
+                <div 
+                  className={`w-3 h-3 rounded-full mr-2`}
+                  style={{ 
+                    backgroundColor: 
+                      index === 0 ? "rgba(100, 255, 218, 0.7)" :
+                      index === 1 ? "rgba(100, 200, 255, 0.7)" :
+                      index === 2 ? "rgba(200, 100, 255, 0.7)" :
+                      "rgba(255, 100, 200, 0.7)"
+                  }}
+                ></div>
+                <span className="text-xs font-mono text-slate-light">{category.category}</span>
+              </div>
+            ))}
           </div>
         </motion.div>
       </div>
