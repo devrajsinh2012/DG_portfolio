@@ -2,7 +2,6 @@
 // Import the Firebase SDK
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -19,18 +18,27 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Create a simple mock for storage to avoid using undici
+// Create a complete mock for storage to avoid using undici
 const storage = {
   ref: (path) => ({
     put: async (file) => ({ 
       ref: { 
-        getDownloadURL: async () => `https://placeholder-image.com/${file.name || 'image.jpg'}` 
+        getDownloadURL: async () => `https://placeholder-image.com/${file?.name || 'image.jpg'}` 
       } 
     }),
     getDownloadURL: async () => "https://placeholder-image.com/image.jpg",
     delete: async () => true,
     listAll: async () => ({ items: [], prefixes: [] }),
-  }),
+    child: (childPath) => ({
+      put: async (file) => ({ 
+        ref: { 
+          getDownloadURL: async () => `https://placeholder-image.com/${childPath}/${file?.name || 'image.jpg'}` 
+        } 
+      }),
+      getDownloadURL: async () => `https://placeholder-image.com/${childPath}/image.jpg`,
+      delete: async () => true
+    })
+  })
 };
 
 export { app, db, storage };

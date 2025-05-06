@@ -1,21 +1,36 @@
-"use client";
 
-import * as React from "react";
-import { useToast } from "@/components/ui/use-toast";
-import { Toast, ToastClose, ToastDescription, ToastTitle } from "@/components/ui/toast";
+"use client"
+
+import { useEffect, useState } from "react"
+
+import { Toast, ToastClose, ToastDescription, ToastProvider, ToastTitle } from "@/components/ui/toast"
+import { toastState } from "@/components/ui/use-toast"
 
 export function Toaster() {
-  const { toasts } = useToast();
+  const [toasts, setToasts] = useState(toastState.toasts)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setToasts([...toastState.toasts])
+    }, 100)
+    
+    return () => clearInterval(interval)
+  }, [])
 
   return (
-    <div className="fixed top-0 z-[100] flex flex-col gap-2 p-4 max-w-md w-full">
-      {toasts.map((toast, index) => (
-        <Toast key={index} variant={toast.variant}>
-          {toast.title && <ToastTitle>{toast.title}</ToastTitle>}
-          {toast.description && <ToastDescription>{toast.description}</ToastDescription>}
-          <ToastClose onClick={() => {}} />
+    <ToastProvider>
+      {toasts.map(({ id, title, description, action, ...props }) => (
+        <Toast key={id} {...props}>
+          <div className="grid gap-1">
+            {title && <ToastTitle>{title}</ToastTitle>}
+            {description && <ToastDescription>{description}</ToastDescription>}
+          </div>
+          {action}
+          <ToastClose onClick={() => {
+            toastState.toasts = toastState.toasts.filter(t => t.id !== id)
+          }} />
         </Toast>
       ))}
-    </div>
-  );
+    </ToastProvider>
+  )
 }
