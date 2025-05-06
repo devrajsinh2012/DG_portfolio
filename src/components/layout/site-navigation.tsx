@@ -2,9 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import * as FM from "framer-motion";
-const motion = FM.motion;
-const AnimatePresence = FM.AnimatePresence;
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Moon, Sun, User } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { LoginModal } from "@/components/admin/login-modal";
