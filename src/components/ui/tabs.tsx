@@ -4,6 +4,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
+// Simple tabs implementation without external dependencies
 interface TabsProps extends React.HTMLAttributes<HTMLDivElement> {
   defaultValue?: string;
   value?: string;
@@ -12,23 +13,28 @@ interface TabsProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
   ({ className, defaultValue, value, onValueChange, ...props }, ref) => {
-    const [selectedValue, setSelectedValue] = React.useState(value || defaultValue);
-    
+    const [selectedValue, setSelectedValue] = React.useState(value || defaultValue || "");
+
     React.useEffect(() => {
       if (value !== undefined) {
         setSelectedValue(value);
       }
     }, [value]);
 
-    const handleValueChange = React.useCallback((newValue: string) => {
-      setSelectedValue(newValue);
+    const handleValueChange = (newValue: string) => {
+      if (value === undefined) {
+        setSelectedValue(newValue);
+      }
       onValueChange?.(newValue);
-    }, [onValueChange]);
+    };
 
     return (
-      <div ref={ref} className={cn("", className)} {...props} data-value={selectedValue}>
-        {props.children}
-      </div>
+      <div
+        ref={ref}
+        className={cn("tabs-container", className)}
+        data-value={selectedValue}
+        {...props}
+      />
     );
   }
 );
@@ -40,11 +46,7 @@ const TabsList = React.forwardRef<HTMLDivElement, TabsListProps>(
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
-      className={cn(
-        "inline-flex h-10 items-center justify-center rounded-md bg-slate-100 p-1 text-slate-500 dark:bg-slate-800 dark:text-slate-400",
-        className
-      )}
-      role="tablist"
+      className={cn("inline-flex items-center justify-center rounded-md bg-muted p-1 text-muted-foreground", className)}
       {...props}
     />
   )
@@ -64,14 +66,17 @@ const TabsTrigger = React.forwardRef<HTMLButtonElement, TabsTriggerProps>(
       <button
         ref={ref}
         role="tab"
-        aria-selected={selected}
-        data-state={selected ? "active" : "inactive"}
-        data-value={value}
         className={cn(
-          "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-white transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-white data-[state=active]:text-slate-950 data-[state=active]:shadow-sm dark:ring-offset-slate-950 dark:focus-visible:ring-slate-800 dark:data-[state=active]:bg-slate-950 dark:data-[state=active]:text-slate-50",
+          "inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+          selected
+            ? "bg-background text-foreground shadow-sm"
+            : "hover:bg-muted hover:text-muted-foreground",
           className
         )}
-        onClick={() => context?.onValueChange(value)}
+        data-state={selected ? "active" : "inactive"}
+        data-value={value}
+        aria-selected={selected}
+        onClick={() => context?.onValueChange?.(value)}
         {...props}
       />
     );
@@ -94,12 +99,12 @@ const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
       <div
         ref={ref}
         role="tabpanel"
-        data-state={selected ? "active" : "inactive"}
-        data-value={value}
         className={cn(
-          "mt-2 ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2 dark:ring-offset-slate-950 dark:focus-visible:ring-slate-800",
+          "mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
           className
         )}
+        data-state={selected ? "active" : "inactive"}
+        tabIndex={0}
         {...props}
       />
     );
@@ -107,21 +112,20 @@ const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
 );
 TabsContent.displayName = "TabsContent";
 
-// Create context for tab state management
+// Context for tabs
 interface TabsContextValue {
   value: string;
   onValueChange: (value: string) => void;
 }
 
-const TabsContext = React.createContext<TabsContextValue | undefined>(undefined);
+const TabsContext = React.createContext<TabsContextValue | null>(null);
 
-// Provider component to wrap all tabs components
-const TabsProvider: React.FC<TabsProps & { children: React.ReactNode }> = ({ 
-  children, 
+// Provider to manage tab state
+export const TabsProvider: React.FC<TabsProps & { children: React.ReactNode }> = ({
   defaultValue,
   value,
   onValueChange,
-  ...props 
+  children,
 }) => {
   const [selectedValue, setSelectedValue] = React.useState(value || defaultValue || "");
 
@@ -131,20 +135,23 @@ const TabsProvider: React.FC<TabsProps & { children: React.ReactNode }> = ({
     }
   }, [value]);
 
-  const handleValueChange = React.useCallback((newValue: string) => {
+  const handleValueChange = (newValue: string) => {
     if (value === undefined) {
       setSelectedValue(newValue);
     }
     onValueChange?.(newValue);
-  }, [onValueChange, value]);
+  };
 
   return (
-    <TabsContext.Provider value={{ value: selectedValue, onValueChange: handleValueChange }}>
-      <Tabs defaultValue={defaultValue} value={selectedValue} onValueChange={handleValueChange} {...props}>
-        {children}
-      </Tabs>
+    <TabsContext.Provider
+      value={{
+        value: selectedValue,
+        onValueChange: handleValueChange,
+      }}
+    >
+      {children}
     </TabsContext.Provider>
   );
 };
 
-export { TabsProvider as Tabs, TabsList, TabsTrigger, TabsContent };
+export { Tabs, TabsList, TabsTrigger, TabsContent };
