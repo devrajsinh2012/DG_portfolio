@@ -1,40 +1,44 @@
-"use client";
+
+"use client"
 
 import * as React from "react";
 
-type ToastType = "default" | "destructive";
-
-export type ToastProps = {
-  id: string;
+type ToastProps = {
   title?: string;
   description?: string;
-  action?: React.ReactNode;
-  variant?: ToastType;
+  variant?: "default" | "destructive";
 };
 
-interface ToastContextType {
-  toasts: ToastProps[];
-  addToast: (toast: Omit<ToastProps, "id">) => void;
-  removeToast: (id: string) => void;
-}
-
-export const ToastContext = React.createContext<ToastContextType | undefined>(undefined);
+type ToastActionElement = React.ReactElement;
 
 export function useToast() {
-  const context = React.useContext(ToastContext);
+  const [toasts, setToasts] = React.useState<ToastProps[]>([]);
 
-  if (!context) {
-    throw new Error("useToast must be used within a ToastProvider");
-  }
-
-  const { addToast } = context;
+  const toast = React.useCallback(({ ...props }: ToastProps) => {
+    setToasts((prev) => [...prev, { ...props }]);
+    
+    // Auto dismiss after 3 seconds
+    setTimeout(() => {
+      setToasts((prev) => prev.slice(1));
+    }, 3000);
+    
+    return {
+      id: Date.now(),
+      dismiss: () => setToasts((prev) => prev.slice(1)),
+    };
+  }, []);
 
   return {
-    toast: (props: Omit<ToastProps, "id">) => {
-      addToast(props);
-    },
-    dismiss: (id: string) => {
-      context.removeToast(id);
+    toast,
+    toasts,
+    dismiss: (id?: number) => {
+      if (id) {
+        setToasts((prev) => prev.filter((_, index) => index !== id));
+      } else {
+        setToasts([]);
+      }
     },
   };
 }
+
+export type { ToastProps, ToastActionElement };
