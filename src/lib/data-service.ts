@@ -477,36 +477,88 @@ export async function updateWebsiteSettings(data: WebsiteSettings) {
   }
 }
 
-// Reset data to initial values
+// Reset data to defaults
 export async function resetToDefaults() {
   try {
-    // Set all collections to initial data
-    const personalInfoRef = doc(db, COLLECTIONS.PERSONAL_INFO, 'main');
-    await setDoc(personalInfoRef, initialData.personalInfo, { merge: true });
+    try {
+      // Set all collections to initial data
+      const personalInfoRef = doc(db, COLLECTIONS.PERSONAL_INFO, 'main');
+      await setDoc(personalInfoRef, initialData.personalInfo, { merge: true });
 
-    // Clear existing skills and add initial ones
-    const skillsCol = collection(db, COLLECTIONS.SKILLS);
-    const skillsSnapshot = await getDocs(skillsCol);
+      // Clear existing skills and add initial ones
+      const skillsCol = collection(db, COLLECTIONS.SKILLS);
+      const skillsSnapshot = await getDocs(skillsCol);
 
-    // Remove existing skills
-    for (const skillDoc of skillsSnapshot.docs) {
-      await updateDoc(doc(db, COLLECTIONS.SKILLS, skillDoc.id), { items: [] });
+      // Remove existing skills
+      for (const skillDoc of skillsSnapshot.docs) {
+        await updateDoc(doc(db, COLLECTIONS.SKILLS, skillDoc.id), { items: [] });
+      }
+
+      // Add initial skills
+      for (const category of initialData.skills) {
+        const docRef = doc(db, COLLECTIONS.SKILLS, category.category);
+        await setDoc(docRef, category, { merge: true });
+      }
+
+      // Update website settings
+      const settingsRef = doc(db, COLLECTIONS.WEBSITE_SETTINGS, 'main');
+      await setDoc(settingsRef, initialData.websiteSettings, { merge: true });
+
+      //Other collections (experience, education, etc.)  - similar implementation
+      const experienceCol = collection(db, COLLECTIONS.EXPERIENCE);
+      const experienceSnapshot = await getDocs(experienceCol);
+      for (const expDoc of experienceSnapshot.docs) {
+        await updateDoc(doc(db, COLLECTIONS.EXPERIENCE, expDoc.id), { position: "Removed", period: "", description: "", achievements: [], technologies: [] });
+      }
+      for (const exp of initialData.experience) {
+        const docRef = doc(db, COLLECTIONS.EXPERIENCE, exp.company);
+        await setDoc(docRef, exp, { merge: true });
+      }
+
+      const educationCol = collection(db, COLLECTIONS.EDUCATION);
+      const educationSnapshot = await getDocs(educationCol);
+      for (const eduDoc of educationSnapshot.docs) {
+        await updateDoc(doc(db, COLLECTIONS.EDUCATION, eduDoc.id), { institution: "Removed", period: "", description: "" });
+      }
+      for (const edu of initialData.education) {
+        const docRef = doc(db, COLLECTIONS.EDUCATION, edu.degree);
+        await setDoc(docRef, edu, { merge: true });
+      }
+
+      const certificationsCol = collection(db, COLLECTIONS.CERTIFICATIONS);
+      const certificationsSnapshot = await getDocs(certificationsCol);
+      for (const certDoc of certificationsSnapshot.docs) {
+        await updateDoc(doc(db, COLLECTIONS.CERTIFICATIONS, certDoc.id), { issuer: "Removed", date: "", description: "" });
+      }
+      for (const cert of initialData.certifications) {
+        const docRef = doc(db, COLLECTIONS.CERTIFICATIONS, cert.name);
+        await setDoc(docRef, cert, { merge: true });
+      }
+
+      const extracurricularCol = collection(db, COLLECTIONS.EXTRACURRICULAR);
+      const extracurricularSnapshot = await getDocs(extracurricularCol);
+      for (const extraDoc of extracurricularSnapshot.docs) {
+        await updateDoc(doc(db, COLLECTIONS.EXTRACURRICULAR, extraDoc.id), { organization: "Removed", period: "", description: "" });
+      }
+      for (const extra of initialData.extracurricular) {
+        const docRef = doc(db, COLLECTIONS.EXTRACURRICULAR, extra.role);
+        await setDoc(docRef, extra, { merge: true });
+      }
+
+      const projectsCol = collection(db, COLLECTIONS.PROJECTS);
+      const projectsSnapshot = await getDocs(projectsCol);
+      for (const projDoc of projectsSnapshot.docs) {
+        await updateDoc(doc(db, COLLECTIONS.PROJECTS, projDoc.id), { description: "Removed", technologies: [], role: "", outcome: "" });
+      }
+      for (const project of initialData.projects) {
+        const docRef = doc(db, COLLECTIONS.PROJECTS, project.title);
+        await setDoc(docRef, project, { merge: true });
+      }
+    } catch (firebaseError) {
+      console.error("Firebase operations failed, using local storage:", firebaseError);
     }
 
-    // Add initial skills
-    for (const category of initialData.skills) {
-      const docRef = doc(db, COLLECTIONS.SKILLS, category.category);
-      await setDoc(docRef, category, { merge: true });
-    }
-
-    // Repeat for other collections...
-    // (Similar implementation for experience, education, etc.)
-
-    // Update website settings
-    const settingsRef = doc(db, COLLECTIONS.WEBSITE_SETTINGS, 'main');
-    await setDoc(settingsRef, initialData.websiteSettings, { merge: true });
-
-    // Reset localStorage as well
+    // Always reset localStorage as a fallback
     localStorage.setItem('portfolioData', JSON.stringify(initialData));
 
     return true;
