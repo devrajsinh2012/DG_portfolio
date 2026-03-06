@@ -2,12 +2,48 @@
 
 import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { usePortfolioData } from "@/context/data-context";
-import { Briefcase, Calendar, ChevronRight, ExternalLink } from "lucide-react";
+import { Briefcase, Calendar, ChevronRight } from "lucide-react";
 
 export function ExperienceSection() {
-  const { data } = usePortfolioData();
-  const { experience } = data;
+  // Local data
+  const experienceData = [
+    {
+      company: "Integers: Beyond the Decimal Point",
+      position: "Chief Operating Officer ",
+      period: "Nov 2024 - Mar 2025",
+      description: "Leading operations and strategic initiatives to drive business growth.",
+      achievements: [
+        "Process Optimization Expert: Analyzed and redesigned operational workflows across 5+ departments, delivering 30% efficiency improvements through systematic process mapping and stakeholder collaboration",
+        "Data-Driven Performance Management: Developed comprehensive KPI frameworks and performance metrics to monitor operational effectiveness, enabling real-time decision-making and stakeholder satisfaction tracking",
+        "Cross-Functional Leadership: Led requirements gathering initiatives across multiple teams, achieving 95% on-time delivery through strategic planning and agile project coordination"
+      ],
+      technologies: ["Process mapping", "KPI development", "Performance analytics" , "stakeholder management" ,  "Strategic Planning", "Operations Management"]
+    },
+    {
+      company: "ORSCOPE TECHNOLOGIES",
+      position: "Project Management Intern",
+      period: "Apr 2024 - Jun 2024",
+      description: "Contributed to project management processes and product development initiatives.",
+      achievements: [
+        "Requirements Engineering Specialist: Conducted 30+stakeholder interviews to gather and document comprehensive business requirements, accelerating development cycles by 20% through clear specification documentation",
+        "Data-Driven Product Optimization: Executed A/B testing campaigns and analyzed user behavior data, resulting in 15% increase in user engagement through evidence-based feature improvements",
+        "Accelerated the delivery of innovative products to market"
+      ],
+      technologies: ["Market Research", "Product Development", "Technical specification writing"]
+    },
+    {
+      company: "Self Employed",
+      position: "Teacher",
+      period: "Jun 2022 - May 2024",
+      description: "Designed and delivered educational content for primary grade students.",
+      achievements: [
+        "Created and implemented effective lessons for primary grades",
+        "Empowered student success through engaging and interactive teaching methods"
+      ],
+      technologies: ["Curriculum Development", "Interactive Learning", "Student Engagement"]
+    }
+  ];
+  
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const [expandedCompany, setExpandedCompany] = useState<string | null>(null);
@@ -72,7 +108,7 @@ export function ExperienceSection() {
           <div className="absolute left-0 top-0 h-full w-0.5 bg-navy-light"></div>
 
           {/* Experience items */}
-          {experience.map((job, index) => (
+          {experienceData.map((job, index) => (
             <motion.div
               key={job.company}
               variants={itemVariants}
@@ -157,45 +193,6 @@ export function ExperienceSection() {
               </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Skills spotlight */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-20 bg-navy p-8 rounded-lg border border-navy-light"
-        >
-          <h3 className="text-xl font-bold text-slate-light mb-6 flex items-center">
-            <Briefcase className="w-5 h-5 mr-2 text-teal" />
-            Professional Growth Spotlight
-          </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="relative bg-navy-light rounded-lg p-6 border border-navy-light hover:border-teal/30 transition-all duration-300">
-              <div className="absolute -top-3 -left-3 w-6 h-6 rounded-full bg-teal flex items-center justify-center font-mono text-navy font-bold">1</div>
-              <h4 className="text-slate-light font-bold mb-2">Project Leadership</h4>
-              <p className="text-slate text-sm">
-                Demonstrated exceptional project management skills, reducing planning time by 10% and accelerating product delivery.
-              </p>
-            </div>
-            
-            <div className="relative bg-navy-light rounded-lg p-6 border border-navy-light hover:border-teal/30 transition-all duration-300">
-              <div className="absolute -top-3 -left-3 w-6 h-6 rounded-full bg-teal flex items-center justify-center font-mono text-navy font-bold">2</div>
-              <h4 className="text-slate-light font-bold mb-2">Strategic Operations</h4>
-              <p className="text-slate text-sm">
-                Spearheaded cross-functional operations to ensure seamless execution of business strategies and growth plans.
-              </p>
-            </div>
-            
-            <div className="relative bg-navy-light rounded-lg p-6 border border-navy-light hover:border-teal/30 transition-all duration-300">
-              <div className="absolute -top-3 -left-3 w-6 h-6 rounded-full bg-teal flex items-center justify-center font-mono text-navy font-bold">3</div>
-              <h4 className="text-slate-light font-bold mb-2">Digital Marketing</h4>
-              <p className="text-slate text-sm">
-                Led comprehensive digital marketing campaigns that increased brand visibility and customer engagement.
-              </p>
-            </div>
-          </div>
         </motion.div>
       </div>
     </section>

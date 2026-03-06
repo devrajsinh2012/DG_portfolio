@@ -16,6 +16,11 @@ module.exports = {
       },
     },
     extend: {
+      zIndex: {
+        '-1': '-1',
+        '-5': '-5',
+        '-10': '-10',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

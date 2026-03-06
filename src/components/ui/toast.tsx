@@ -1,4 +1,3 @@
-
 "use client"
 
 import * as React from "react";
@@ -21,6 +20,10 @@ const toastVariants = cva(
     },
   }
 )
+
+// Type definitions
+export type ToastProps = React.ComponentPropsWithoutRef<typeof Toast>
+export type ToastActionElement = React.ReactElement<typeof ToastAction>
 
 const Toast = React.forwardRef<
   HTMLDivElement,

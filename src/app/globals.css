@@ -1,90 +1,90 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
-@layer base {
-  :root {
-    --background: 215 100% 95%;
-    --foreground: 222 47% 11%;
-    
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
- 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
- 
-    --primary: 221 70% 11%;
-    --primary-foreground: 210 40% 98%;
- 
-    --secondary: 170 100% 70%;
-    --secondary-foreground: 222 47% 11%;
- 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
- 
-    --accent: 170 100% 70%;
-    --accent-foreground: 222 47% 11%;
- 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222 47% 11%;
- 
-    --radius: 0.5rem;
-    
-    /* Custom theme variables */
-    --color-primary: var(--color-primary, #0a192f);
-    --color-secondary: var(--color-secondary, #64ffda);
-    --color-background: var(--color-background, #0a192f);
-    --color-text-primary: var(--color-text-primary, #ccd6f6);
-    --color-text-secondary: var(--color-text-secondary, #8892b0);
-    --color-accent: var(--color-accent, #64ffda);
-    
-    --font-heading: var(--font-heading, 'Montserrat, sans-serif');
-    --font-body: var(--font-body, 'Open Sans, sans-serif');
-    --font-mono: var(--font-mono, 'Fira Code, monospace');
-    
-    --animations-enabled: var(--animations-enabled, all);
-    --animation-speed-factor: var(--animation-speed-factor, 1);
-    --animation-intensity-factor: var(--animation-intensity-factor, 1);
-    
-    --layout-max-width: var(--layout-max-width, 1200px);
-    --spacing-factor: var(--spacing-factor, 1);
-  }
- 
-  .dark {
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
- 
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
- 
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
- 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222 47% 11%;
- 
-    --secondary: 170 100% 70%;
-    --secondary-foreground: 222 47% 11%;
- 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
- 
-    --accent: 170 100% 70%;
-    --accent-foreground: 222 47% 11%;
- 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
- 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-  }
+:root {
+  --background: 215 100% 95%;
+  --foreground: 222 47% 11%;
+  
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+
+  --primary: 221 70% 11%;
+  --primary-rgb: 26, 183, 89;
+  --primary-foreground: 210 40% 98%;
+
+  --secondary: 170 100% 70%;
+  --secondary-foreground: 222 47% 11%;
+
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+
+  --accent: 170 100% 70%;
+  --accent-foreground: 222 47% 11%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 222 47% 11%;
+
+  --radius: 0.5rem;
+  
+  /* Custom theme variables */
+  --color-primary: var(--color-primary, #0a192f);
+  --color-secondary: var(--color-secondary, #64ffda);
+  --color-background: var(--color-background, #0a192f);
+  --color-text-primary: var(--color-text-primary, #ccd6f6);
+  --color-text-secondary: var(--color-text-secondary, #8892b0);
+  --color-accent: var(--color-accent, #64ffda);
+  
+  --font-heading: var(--font-heading, 'Montserrat, sans-serif');
+  --font-body: var(--font-body, 'Open Sans, sans-serif');
+  --font-mono: var(--font-mono, 'Fira Code, monospace');
+  
+  --animations-enabled: var(--animations-enabled, all);
+  --animation-speed-factor: var(--animation-speed-factor, 1);
+  --animation-intensity-factor: var(--animation-intensity-factor, 1);
+  
+  --layout-max-width: var(--layout-max-width, 1200px);
+  --spacing-factor: var(--spacing-factor, 1);
 }
- 
+
+.dark {
+  --background: 222 47% 11%;
+  --foreground: 210 40% 98%;
+
+  --card: 222 47% 11%;
+  --card-foreground: 210 40% 98%;
+
+  --popover: 222 47% 11%;
+  --popover-foreground: 210 40% 98%;
+
+  --primary: 210 40% 98%;
+  --primary-rgb: 43, 217, 110;
+  --primary-foreground: 222 47% 11%;
+
+  --secondary: 170 100% 70%;
+  --secondary-foreground: 222 47% 11%;
+
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+
+  --accent: 170 100% 70%;
+  --accent-foreground: 222 47% 11%;
+
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 212.7 26.8% 83.9%;
+}
+
 @layer base {
   * {
     @apply border-border;
@@ -93,6 +93,7 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
     font-family: var(--font-body);
+    background-color: #030712; /* Dark background for better contrast */
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -253,5 +254,52 @@
   .animate-custom-slide-up {
     animation: customSlideUp calc(500ms * var(--animation-speed-factor, 1)) ease-in-out forwards;
     animation-play-state: var(--animations-enabled, running);
+  }
+
+  /* Spotlight Card Styles */
+  .card-spotlight {
+    position: relative;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    background-color: rgba(26, 41, 73, 0.5);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    --mouse-x: 50%;
+    --mouse-y: 50%;
+    --spotlight-color: rgba(100, 255, 218, 0.15);
+  }
+
+  .card-spotlight::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      800px circle at var(--mouse-x) var(--mouse-y), 
+      var(--spotlight-color), 
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .card-spotlight:hover::before,
+  .card-spotlight:focus-within::before {
+    opacity: 1;
+  }
+  
+  .card-spotlight > * {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+@layer utilities {
+  .bg-radial-gradient {
+    background: radial-gradient(circle at center, transparent 0%, rgba(10, 25, 47, 0.5) 70%, rgba(10, 25, 47, 0.8) 100%);
   }
 }

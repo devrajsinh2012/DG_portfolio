@@ -1,12 +1,34 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePortfolioData } from "@/context/data-context";
 
 // This hook applies the theme colors from the admin settings to the website
 export function useThemeStyles() {
-  const { data } = usePortfolioData();
-  const { websiteSettings } = data;
+  // Local static data
+  const websiteSettings = {
+    colorTheme: {
+      primary: "#0a192f",
+      secondary: "#64ffda",
+      background: "#0a192f",
+      textPrimary: "#ccd6f6",
+      textSecondary: "#8892b0",
+      accent: "#64ffda"
+    },
+    fonts: {
+      heading: "Montserrat, sans-serif",
+      body: "Open Sans, sans-serif",
+      code: "Fira Code, monospace"
+    },
+    animations: {
+      enabled: true,
+      speed: "normal",
+      intensity: "medium"
+    },
+    layout: {
+      maxWidth: "1200px",
+      spacing: "comfortable"
+    }
+  };
   
   useEffect(() => {
     // Apply CSS variables for theme colors

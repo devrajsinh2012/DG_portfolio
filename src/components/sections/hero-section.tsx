@@ -2,12 +2,20 @@
 
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { usePortfolioData } from "@/context/data-context";
 import { ArrowRight } from "lucide-react";
 
 export function HeroSection() {
-  const { data } = usePortfolioData();
-  const { personalInfo } = data;
+  // Local data instead of using context
+  const personalInfo = {
+    name: "Devrajsinh Gohil",
+    title: "Aspiring Buniess Analyst",
+    email: "djgohil2012@gmail.com",
+    phone: "+91-8160529391",
+    location: "Rajkot, Gujarat, India",
+    linkedin: "linkedin.com/in/devrajsinh2012/",
+    bio: "Analytical Computer Engineering student with demonstrated experience in requirements gathering, stakeholder management, and data-driven process optimization. Proven track record of conducting 200+ stakeholder interviews, implementing operational improvements achieving 30% efficiency gains, and translating business needs into technical specifications. Seeking Business Analyst internship to leverage strong analytical skills and hands-on experience in driving organizational excellence"
+  };
+  
   const typingRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {

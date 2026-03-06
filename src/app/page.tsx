@@ -1,54 +1,46 @@
-
 "use client";
 
-import { usePortfolioData } from "@/context/data-context";
-import { PortfolioLoader } from "@/components/portfolio-loader";
-import { motion } from "framer-motion";
-
-// Import components correctly - using named imports
-import { HeroSection } from "@/components/sections/hero-section";
-import { AboutSection } from "@/components/sections/about-section";
-import { SkillsSection } from "@/components/sections/skills-section";
-import { ExperienceSection } from "@/components/sections/experience-section";
-import { ProjectsSection } from "@/components/sections/projects-section";
-import { EducationSection } from "@/components/sections/education-section";
-import { ContactSection } from "@/components/sections/contact-section";
+import { useState, useEffect, Suspense } from 'react';
+import { HeroSection } from '../components/sections/hero-section';
+import { AboutSection } from '../components/sections/about-section';
+import { SkillsSection } from '../components/sections/skills-section';
+import { ExperienceSection } from '../components/sections/experience-section';
+import { EducationSection } from '../components/sections/education-section';
+import { ProjectsSection } from '../components/sections/projects-section';
+import { CertificationsSection } from '../components/sections/certifications-section';
+import { ContactSection } from '../components/sections/contact-section';
+import { BannerSection } from '../components/sections/banner-section';
+import { PortfolioLoader } from '../components/portfolio-loader';
+import { ScrollToTop } from '../components/ui/scroll-to-top';
 
 export default function Home() {
-  const { data, loading } = usePortfolioData();
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Create a simplified mock implementation if data is unavailable
-  const sections = ['hero', 'about', 'skills', 'experience', 'projects', 'education', 'contact'];
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, []);
 
-  if (loading) {
+  if (isLoading) {
     return <PortfolioLoader />;
   }
 
-  // Function to render sections based on visibility settings
-  const renderSection = (id: string, Component: React.ComponentType<any>) => {
-    return (
-      <motion.section 
-        id={id} 
-        className="py-16 scroll-mt-20"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.6 }}
-      >
-        <Component />
-      </motion.section>
-    );
-  };
-
   return (
-    <main className="container mx-auto px-4 sm:px-6 py-8">
-      {renderSection("hero", HeroSection)}
-      {renderSection("about", AboutSection)}
-      {renderSection("skills", SkillsSection)}
-      {renderSection("experience", ExperienceSection)}
-      {renderSection("projects", ProjectsSection)}
-      {renderSection("education", EducationSection)}
-      {renderSection("contact", ContactSection)}
+    <main className="min-h-screen">
+      <BannerSection />
+      <HeroSection />
+      <Suspense fallback={<div className="loading-section">Loading...</div>}>
+        <AboutSection />
+        <SkillsSection />
+        <ExperienceSection />
+        <ProjectsSection />
+        <CertificationsSection />
+        <EducationSection />
+        <ContactSection />
+      </Suspense>
+      <ScrollToTop />
     </main>
   );
 }

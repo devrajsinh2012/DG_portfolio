@@ -2,12 +2,33 @@
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { usePortfolioData } from "@/context/data-context";
 import Image from "next/image";
 
 export function AboutSection() {
-  const { data } = usePortfolioData();
-  const { personalInfo } = data;
+  // Local data
+  const aboutData = {
+    aboutText: [
+      "Hello! I'm Devrajsinh, an aspiring Business Analyst and tech-driven professional with hands-on experience in stakeholder management, requirements gathering, and process optimization. I bridge the gap between business objectives and technical solutions, translating complex requirements into actionable insights that drive organizational growth.",
+      "With experience conducting 30+ stakeholder interviews and implementing operational improvements achieving 30% efficiency gains, I thrive at the intersection of technology, business strategy, and data analytics. My background spans from leading cross-functional teams to developing user-centric applications with ML integration.",
+      "What sets me apart is my analytical mindset combined with practical implementation skills. I leverage data visualization tools like Tableau and Power BI, along with SQL and statistical analysis, to uncover insights that fuel strategic decisions and operational excellence.",
+      "Beyond my professional pursuits, I'm passionate about innovation leadership as Chair of Innovation Vertical at Young Indians, and I find creative balance through theatre performances with Utsav Natak Academy – experiences that enhance my collaborative and communication skills."
+    ],
+    strengths: [
+      {
+        title: "Strategic Thinker",
+        description: "Applying strategic insights to drive impactful projects and business growth through innovative solutions."
+      },
+      {
+        title: "Cross-Functional Leader",
+        description: "Leading diverse teams to achieve common goals while leveraging individual strengths and expertise."
+      },
+      {
+        title: "Process Optimizer",
+        description: "Streamlining workflows to enhance efficiency, reduce operational costs, and improve project delivery."
+      }
+    ]
+  };
+  
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
 
@@ -17,7 +38,7 @@ export function AboutSection() {
       opacity: 1,
       transition: {
         delayChildren: 0.3,
-        staggerChildren: 0.2,
+        staggerChildren: 0.1,
       },
     },
   };
@@ -35,7 +56,7 @@ export function AboutSection() {
     <section
       id="about"
       ref={sectionRef}
-      className="py-20 px-6 bg-navy-dark"
+      className="py-20 px-6"
     >
       <div className="container mx-auto max-w-5xl">
         <motion.div
@@ -51,95 +72,53 @@ export function AboutSection() {
             </h2>
             
             <div className="space-y-4 text-slate">
-              <p>
-                Hello! I'm Devrajsinh, a Project Management professional passionate about 
-                driving business growth through strategic thinking and effective leadership. 
-                My journey in the realm of project management has equipped me with valuable 
-                skills in cross-functional coordination and digital marketing campaigns.
-              </p>
-              
-              <p>
-                Currently serving as the Chief Operating Officer at Integers: Beyond the Decimal Point, 
-                I spearhead operations to ensure seamless execution of business strategies and lead 
-                digital marketing initiatives to enhance brand visibility.
-              </p>
-              
-              <p>
-                What sets me apart is my dedication to process optimization and data-driven 
-                decision making. I believe in leveraging analytical insights to streamline 
-                workflows and maximize operational efficiency.
-              </p>
-              
-              <p>
-                When I'm not immersed in the world of project management, you can find me 
-                engaged in theatre performances with Utsav Natak Academy or contributing 
-                to innovation initiatives as Chair of Innovation Vertical at Young Indians.
-              </p>
+              {aboutData.aboutText.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
             </div>
           </motion.div>
 
-          {/* Profile Image */}
+          {/* Image */}
           <motion.div
             variants={itemVariants}
-            className="relative order-first lg:order-last mx-auto"
+            className="relative group"
           >
-            <div className="relative w-64 h-64 md:w-80 md:h-80">
-              {/* Placeholder for profile image - will be replaced via admin */}
-              <div className="w-full h-full bg-navy-light rounded-md overflow-hidden relative group">
-                <div className="absolute inset-0 bg-gradient-to-br from-teal/20 to-transparent opacity-50"></div>
-                <div className="absolute inset-0 flex items-center justify-center text-teal">
-                  <span className="font-mono text-lg">Profile Image</span>
-                </div>
-                
-                {/* Image border effect */}
-                <div className="absolute -inset-0.5 rounded-md bg-teal/20 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="relative w-full aspect-square max-w-md mx-auto">
+              <div className="absolute inset-0 border-2 rounded-md border-teal translate-x-5 translate-y-5 transition-transform group-hover:translate-x-4 group-hover:translate-y-4" />
+              <div className="absolute inset-0 bg-navy-light rounded-md overflow-hidden">
+                <Image 
+                  src="/images/profile1.webp" 
+                  alt="Devrajsinh Gohil" 
+                  fill 
+                  className="object-cover"
+                  priority
+                  quality={70}
+                />
               </div>
-            </div>
-
-            {/* Decorative elements */}
-            <div className="absolute w-full h-full border-2 rounded-md border-teal top-4 left-4 -z-10">
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-teal -mb-2 -mr-2"></div>
-              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-teal -mt-2 -ml-2"></div>
+              <div className="absolute inset-0 bg-teal/20 rounded-md opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
           </motion.div>
         </motion.div>
-        
-        {/* Key Highlights */}
+
+        {/* Strengths */}
         <motion.div 
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6"
         >
-          <motion.div 
-            variants={itemVariants}
-            className="bg-navy p-6 rounded-lg border border-navy-light hover:border-teal/30 transition-colors duration-300"
-          >
-            <h3 className="text-slate-light text-xl font-bold mb-3">Strategic Thinker</h3>
-            <p className="text-slate">
-              Applying strategic insights to drive impactful projects and business growth through innovative solutions.
-            </p>
-          </motion.div>
-          
-          <motion.div 
-            variants={itemVariants}
-            className="bg-navy p-6 rounded-lg border border-navy-light hover:border-teal/30 transition-colors duration-300"
-          >
-            <h3 className="text-slate-light text-xl font-bold mb-3">Cross-Functional Leader</h3>
-            <p className="text-slate">
-              Leading diverse teams to achieve common goals while leveraging individual strengths and expertise.
-            </p>
-          </motion.div>
-          
-          <motion.div 
-            variants={itemVariants}
-            className="bg-navy p-6 rounded-lg border border-navy-light hover:border-teal/30 transition-colors duration-300"
-          >
-            <h3 className="text-slate-light text-xl font-bold mb-3">Process Optimizer</h3>
-            <p className="text-slate">
-              Streamlining workflows to enhance efficiency, reduce operational costs, and improve project delivery.
-            </p>
-          </motion.div>
+          {aboutData.strengths.map((strength, index) => (
+            <motion.div 
+              key={index}
+              variants={itemVariants}
+              className="bg-navy p-6 rounded-lg border border-navy-light hover:border-teal/30 transition-colors duration-300"
+            >
+              <h3 className="text-slate-light text-xl font-bold mb-3">{strength.title}</h3>
+              <p className="text-slate">
+                {strength.description}
+              </p>
+            </motion.div>
+          ))}
         </motion.div>
       </div>
     </section>

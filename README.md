@@ -1,6 +1,6 @@
 # Devrajsinh Gohil - Interactive Portfolio Website
 
-This is an interactive portfolio website with an admin portal for Devrajsinh Gohil, showcasing his professional experience, skills, and accomplishments.
+A modern, interactive portfolio website for Devrajsinh Gohil, showcasing professional experience, skills, and accomplishments.
 
 ## Features
 
@@ -8,20 +8,33 @@ This is an interactive portfolio website with an admin portal for Devrajsinh Goh
 - Interactive UI elements and animations
 - Professional sections for About, Skills, Experience, Projects, Education, and Contact
 - Downloadable resume
-- Admin portal with password protection for content management
-- Customizable color themes, typography, and layout
+- Customizable color themes and typography
 
 ## Technology Stack
 
 - Next.js with TypeScript
 - Tailwind CSS for styling
-- Framer Motion for animations
-- Shadcn UI for component library
-- Firebase for authentication and content management
+- Framer Motion & GSAP for animations
+- Firebase for hosting and storage
+
+## Setting Up EmailJS for Contact Form
+
+To enable the email functionality in the contact form:
+
+1. Sign up at [EmailJS](https://www.emailjs.com/) (they have a free tier)
+2. Create a new service (Gmail, Outlook, etc.)
+3. Create an email template with variables: `name`, `email`, `subject`, `message`
+4. Get your EmailJS user ID, service ID, and template ID
+5. Update the contact form component with your IDs:
+
+```jsx
+// In src/components/sections/contact-section.tsx
+const serviceID = 'YOUR_SERVICE_ID';  // Replace with your service ID
+const templateID = 'YOUR_TEMPLATE_ID';  // Replace with your template ID
+const userID = 'YOUR_USER_ID';  // Replace with your user ID
+```
 
 ## Development
-
-### Getting Started
 
 ```bash
 # Install dependencies
@@ -32,14 +45,17 @@ npm run dev
 
 # Build for production
 npm run build
-
-# Start production server
-npm start
 ```
 
-### Admin Portal
+## Deployment
 
-To access the admin portal, click on the profile picture icon in the navigation bar and enter the password `admin123`. From there, you can modify website content, upload images, and customize the theme.
+This project is configured for Firebase Hosting with static export (`output: 'export'`).
+
+```bash
+# Build and deploy
+npm run build
+firebase deploy
+```
 
 ## License
 
