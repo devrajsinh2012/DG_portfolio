@@ -72,37 +72,40 @@ export function ContactSection() {
       className="py-20 px-6 bg-slate-900"
     >
       <div className="container mx-auto max-w-5xl">
+        {/* Section Heading */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.5 }}
-          className="mb-16"
+          className="mb-16 text-center"
         >
           <h2 className="text-3xl font-bold text-teal mb-4">
             <span className="text-teal font-mono mr-2">07.</span> Get In Touch
           </h2>
-          <p className="text-slate-300 max-w-3xl mt-4">
+          <p className="text-slate-300 max-w-xl mx-auto mt-4">
             Interested in working together? Feel free to reach out via email or connect with me on social media.
           </p>
         </motion.div>
 
-        <div className="max-w-2xl">
-          {/* Contact Info */}
+        {/* Centered Card */}
+        <div className="flex justify-center">
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
+            className="w-full max-w-lg"
           >
             <motion.h3
               variants={itemVariants}
-              className="text-2xl font-bold text-slate-100 mb-8"
+              className="text-2xl font-bold text-slate-100 mb-8 text-center"
             >
               Contact Information
             </motion.h3>
 
+            {/* Contact Items */}
             <motion.div variants={itemVariants} className="space-y-6">
-              <div className="flex items-start">
-                <div className="bg-slate-800 p-3 rounded-full mr-4">
+              <div className="flex items-center">
+                <div className="bg-slate-800 p-3 rounded-full mr-4 flex-shrink-0">
                   <Mail className="w-5 h-5 text-teal" />
                 </div>
                 <div>
@@ -116,8 +119,8 @@ export function ContactSection() {
                 </div>
               </div>
 
-              <div className="flex items-start">
-                <div className="bg-slate-800 p-3 rounded-full mr-4">
+              <div className="flex items-center">
+                <div className="bg-slate-800 p-3 rounded-full mr-4 flex-shrink-0">
                   <Phone className="w-5 h-5 text-teal" />
                 </div>
                 <div>
@@ -131,8 +134,8 @@ export function ContactSection() {
                 </div>
               </div>
 
-              <div className="flex items-start">
-                <div className="bg-slate-800 p-3 rounded-full mr-4">
+              <div className="flex items-center">
+                <div className="bg-slate-800 p-3 rounded-full mr-4 flex-shrink-0">
                   <MapPin className="w-5 h-5 text-teal" />
                 </div>
                 <div>
@@ -140,30 +143,30 @@ export function ContactSection() {
                   <p className="text-slate-300">{personalInfo.location}</p>
                 </div>
               </div>
+            </motion.div>
 
-              {/* Social Media Links */}
-              <motion.div variants={itemVariants} className="mt-8">
-                <h4 className="text-slate-200 font-medium mb-3">Connect With Me</h4>
-                <div className="flex space-x-4">
-                  {socialLinks.map((link) => (
-                    <a
-                      key={link.name}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-slate-800 p-3 rounded-full hover:bg-teal hover:text-slate-900 transition-colors text-slate-300"
-                    >
-                      {link.icon}
-                    </a>
-                  ))}
-                </div>
-              </motion.div>
+            {/* Social Media Links */}
+            <motion.div variants={itemVariants} className="mt-8 text-center">
+              <h4 className="text-slate-200 font-medium mb-4">Connect With Me</h4>
+              <div className="flex justify-center space-x-4">
+                {socialLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-slate-800 p-3 rounded-full hover:bg-teal hover:text-slate-900 transition-colors text-slate-300"
+                  >
+                    {link.icon}
+                  </a>
+                ))}
+              </div>
             </motion.div>
 
             {/* Resume Download */}
             <motion.div
               variants={itemVariants}
-              className="mt-12 p-6 bg-slate-800 rounded-lg border border-slate-700 text-center"
+              className="mt-10 p-6 bg-slate-800 rounded-lg border border-slate-700 text-center"
             >
               <h4 className="text-slate-200 font-bold mb-3">Download My Resume</h4>
               <p className="text-slate-300 mb-6">
