@@ -15,8 +15,8 @@ export function ProjectsSection() {
       category: "Project Management",
       role: "Full Stack Developer",
       outcome: "Successfully designed and built a containerized, multi-tenant project management platform with advanced agile boards and AI-assisted workflows.",
-      sourceCodeUrl: "https://github.com/devrajsinh2012",
-      demoUrl: ""
+      sourceCodeUrl: "https://github.com/devrajsinh2012/Niyoplan",
+      demoUrl: "https://niyoplan.in/"
     },
     {
       title: "MEXAR -- MULTIMODAL EXPLAINABLE AI & REASONER",
@@ -26,7 +26,7 @@ export function ProjectsSection() {
       role: "AI Engineer",
       outcome: "Deployed a production-ready explainable AI platform with semantic verification and multimodal capabilities.",
       sourceCodeUrl: "https://github.com/devrajsinh2012",
-      demoUrl: ""
+      demoUrl: "https://mexar.vercel.app/"
     },
     {
       title: "Analyzing Startup Fundraising Deals from Crunchbase",
@@ -38,7 +38,7 @@ export function ProjectsSection() {
       sourceCodeUrl: "https://github.com/devrajsinh2012",
       demoUrl: ""
     },
-    
+
     // Existing Projects
     {
       title: "Digital Marketing Campaign Optimization",
@@ -47,20 +47,9 @@ export function ProjectsSection() {
       category: "Digital Marketing",
       role: "Project Lead",
       outcome: "Increased engagement metrics by 25% through targeted content strategies and optimization, resulting in 40% improvement in conversion rates and 30% growth in brand awareness.",
-      sourceCodeUrl: "https://github.com/devrajsinh2012",
-      demoUrl: "https://github.com/devrajsinh2012"
+      sourceCodeUrl: "https://github.com/devrajsinh2012/CampaignOS",
+      demoUrl: "https://campaign-os-theta.vercel.app/"
     },
-    {
-      title: "Process Optimization Initiative",
-      description: "Streamlined internal processes to reduce redundancies and improve operational efficiency across departments. Conducted thorough process mapping, identified bottlenecks, and implemented workflow automation solutions to enhance productivity.",
-      technologies: ["Process Mapping", "Workflow Optimization", "Change Management", "Automation", "Business Analysis"],
-      category: "Business Analysis",
-      role: "Process Improvement Specialist",
-      outcome: "Reduced project planning time by 10% and overall operational costs by 15% through implementation of streamlined requirement gathering processes and automated workflow systems.",
-      sourceCodeUrl: "",
-      demoUrl: ""
-    },
-    
     // New Projects
     {
       title: "Regional Sign Language Interpreter with Deep Learning",
@@ -69,18 +58,18 @@ export function ProjectsSection() {
       category: "AI & Machine Learning",
       role: "ML Engineer",
       outcome: "Achieved 92% accuracy in sign language recognition with real-time processing capabilities. Published in the 2025 IEEE International Conference on Communication Networks and Computing (CNC): 'Comprehensive evaluation of deep learning pipelines for gujarati sign language recognition'.",
-      sourceCodeUrl: "https://github.com/devrajsinh2012",
-      demoUrl: ""
+      sourceCodeUrl: "https://github.com/devrajsinh2012/Sanket-Setu",
+      demoUrl: "https://sanket-setu.vercel.app"
     },
     {
-      title: "Card Game - Java Socket Programming",
+      title: "BlackACE Card Game - Java Socket Programming",
       description: "Developed a multiplayer card game application enabling real-time gameplay between two players using Java socket programming. Implemented robust network communication protocols, game state synchronization, and user-friendly interface for seamless gaming experience.",
       technologies: ["Java", "Socket Programming", "Network Communication", "Game Development", "Multi-threading", "GUI"],
       category: "Game Development",
       role: "Software Developer",
       outcome: "Successfully implemented real-time multiplayer functionality with 99.5% uptime, supporting concurrent gameplay sessions and smooth network communication with minimal latency.",
-      sourceCodeUrl: "https://github.com/devrajsinh2012",
-      demoUrl: ""
+      sourceCodeUrl: "https://github.com/devrajsinh2012/BlackAce",
+      demoUrl: "https://black-ace-six.vercel.app/"
     },
     {
       title: "Smart Grocery List App with AI",
@@ -89,7 +78,7 @@ export function ProjectsSection() {
       category: "Mobile Development",
       role: "Project Lead",
       outcome: "Delivered a user-friendly mobile application with 95% user satisfaction rate, featuring AI-powered grocery recommendations that reduced shopping time by 30% and food waste by 25%.",
-      sourceCodeUrl: "https://github.com/devrajsinh2012",
+      sourceCodeUrl: "https://github.com/devrajsinh2012/Smart-Grocery-App",
       demoUrl: ""
     },
     {
@@ -99,18 +88,18 @@ export function ProjectsSection() {
       category: "MERN Stack",
       role: "Project Lead",
       outcome: "Created a complete booking platform facilitating 10,000+ heritage site bookings, increasing tourism revenue by 35% and providing seamless reservation management for 50+ heritage sites.",
-      sourceCodeUrl: "https://github.com/devrajsinh2012",
-      demoUrl: ""
+      sourceCodeUrl: "https://github.com/devrajsinh2012/Samyati",
+      demoUrl: "https://github.com/devrajsinh2012/Samyati"
     },
     {
-      title: "Library Management System",
+      title: "Nexus - Library Management System",
       description: "Built a comprehensive full-stack library management system to automate book lending, user management, inventory tracking, and fine calculation processes. Implemented advanced search functionality, automated notifications, and detailed reporting capabilities.",
       technologies: ["MongoDB", "Express.js", "React", "Node.js", "MERN Stack", "Authentication", "Database Design"],
       category: "MERN Stack",
       role: "Full Stack Developer",
       outcome: "Streamlined library operations serving 2,000+ users, reduced manual work by 60%, and improved book tracking accuracy by 98% with automated inventory management system.",
-      sourceCodeUrl: "https://github.com/devrajsinh2012",
-      demoUrl: ""
+      sourceCodeUrl: "https://github.com/devrajsinh2012/Nexus-Library",
+      demoUrl: "https://nexus-library.vercel.app/"
     },
     {
       title: "Hotel Management Data Analysis",
@@ -129,12 +118,12 @@ export function ProjectsSection() {
       category: "Web Development",
       role: "Web Developer",
       outcome: "Created an engaging user experience with 5,000+ active users, featuring interactive astrological features, 98% mobile responsiveness, and 40% increase in user engagement through personalized content.",
-      sourceCodeUrl: "https://github.com/devrajsinh2012",
-      demoUrl: ""
+      sourceCodeUrl: "https://github.com/devrajsinh2012/Mysticgraze",
+      demoUrl: "devrajsinh2012.github.io/Mysticgraze/"
     },
 
   ];
-  
+
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
@@ -142,9 +131,9 @@ export function ProjectsSection() {
 
   // Define clean categories for filtering
   const categories = [
-   "Business Analysis",
+    "Business Analysis",
     "Data Analysis",
-    "AI & Machine Learning", 
+    "AI & Machine Learning",
     "MERN Stack",
     "Web Development",
     "Mobile Development",
@@ -228,11 +217,10 @@ export function ProjectsSection() {
           <div className="flex flex-wrap gap-3 justify-center">
             <button
               onClick={() => setFilter(null)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                filter === null
-                  ? "bg-teal text-navy-dark shadow-lg"
-                  : "bg-navy-light text-slate-light hover:text-teal hover:bg-navy-light/80"
-              }`}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${filter === null
+                ? "bg-teal text-navy-dark shadow-lg"
+                : "bg-navy-light text-slate-light hover:text-teal hover:bg-navy-light/80"
+                }`}
             >
               All
             </button>
@@ -240,11 +228,10 @@ export function ProjectsSection() {
               <button
                 key={category}
                 onClick={() => setFilter(category)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  filter === category
-                    ? "bg-teal text-navy-dark shadow-lg"
-                    : "bg-navy-light text-slate-light hover:text-teal hover:bg-navy-light/80"
-                }`}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${filter === category
+                  ? "bg-teal text-navy-dark shadow-lg"
+                  : "bg-navy-light text-slate-light hover:text-teal hover:bg-navy-light/80"
+                  }`}
               >
                 {category}
               </button>
@@ -276,7 +263,7 @@ export function ProjectsSection() {
               key={project.title}
               variants={itemVariants}
             >
-              <SpotlightCard 
+              <SpotlightCard
                 className="h-full flex flex-col p-6"
                 spotlightColor="rgba(100, 255, 218, 0.15)"
               >
@@ -288,7 +275,7 @@ export function ProjectsSection() {
                       {project.category}
                     </span>
                   </div>
-                  
+
                   <h3 className="text-xl font-bold text-slate-light hover:text-teal transition-colors mb-3">
                     {project.title}
                   </h3>
@@ -311,7 +298,7 @@ export function ProjectsSection() {
                     )}
                   </div>
                 </div>
-                
+
                 {/* Call to Action Button */}
                 <div className="mt-4">
                   <button
@@ -346,7 +333,7 @@ export function ProjectsSection() {
                 className="fixed inset-0 z-50 flex items-center justify-center p-4"
               >
                 <div className="w-full max-w-3xl max-h-[90vh] overflow-y-auto">
-                  <SpotlightCard 
+                  <SpotlightCard
                     className="overflow-hidden"
                     spotlightColor="rgba(100, 255, 218, 0.2)"
                   >
@@ -423,7 +410,7 @@ export function ProjectsSection() {
                               <span>Source Code</span>
                             </a>
                           )}
-                          
+
                           {selectedProjectData.demoUrl && (
                             <a
                               href={selectedProjectData.demoUrl}
