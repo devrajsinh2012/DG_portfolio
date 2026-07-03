@@ -132,16 +132,7 @@ export function ProjectsSection() {
       sourceCodeUrl: "https://github.com/devrajsinh2012",
       demoUrl: ""
     },
-    {
-      title: "Soup and Saur - Project Management Documentation",
-      description: "Comprehensive project management documentation and planning initiative to establish standardized processes, improve project delivery efficiency, and create scalable project management frameworks. Developed templates, workflows, and best practices documentation.",
-      technologies: ["Project Management", "Documentation", "Process Design", "Planning", "Agile Methodology", "Quality Assurance"],
-      category: "Project Management",
-      role: "Project Manager",
-      outcome: "Established comprehensive project management framework improving team coordination by 45%, reducing project delivery time by 25%, and achieving 95% on-time project completion rate.",
-      sourceCodeUrl: "",
-      demoUrl: ""
-    }
+
   ];
   
   const sectionRef = useRef<HTMLElement>(null);
