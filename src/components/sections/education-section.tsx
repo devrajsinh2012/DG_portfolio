@@ -10,29 +10,41 @@ export function EducationSection() {
     {
       degree: "Bachelor of Technology in Computer Engineering",
       institution: "Marwadi University (NAAC A+)",
-      period: "2020 - 2024",
-      description: "Comprehensive education in computer engineering fundamentals and applications."
+      period: "2020 - 2026",
+      description: "Comprehensive education in computer engineering fundamentals and applications, graduating in March 2026."
     }
   ];
   
   const extracurricularData = [
     {
       role: "Chair of Innovation Vertical",
-      organization: "Young Indians",
-      period: "2023 - Present",
-      description: "Lead innovation initiatives and projects within the Young Indians organization."
+      organization: "Young Indians (CII)",
+      period: "2023 - 2026",
+      description: "Lead innovation initiatives and projects, driving strategic leadership and community impact."
+    },
+    {
+      role: "Aspire Leadership Program",
+      organization: "Harvard Business School",
+      period: "Aug -- Oct 2025",
+      description: "Completed intensive leadership development program focused on foundational business strategy, collaborative communication, and real-world leadership action."
+    },
+    {
+      role: "Forward Program Participant",
+      organization: "McKinsey & Company",
+      period: "Aug -- Dec 2025",
+      description: "Developed essential business, digital, leadership, and problem-solving skills through McKinsey's flagship capability-building program for young professionals."
+    },
+    {
+      role: "IEEE SIGHT Member",
+      organization: "IEEE SIGHT",
+      period: "Jan 2026 -- Present",
+      description: "Engaged in humanitarian technology activities, collaborating with local communities to design and implement technology-driven solutions."
     },
     {
       role: "Anchor, Public Speaking",
       organization: "Marwadi University",
       period: "2022 - 2024",
       description: "Hosted university events and developed public speaking skills through regular presentations."
-    },
-    {
-      role: "Community Member",
-      organization: "Research Activity Club",
-      period: "2022 - 2025",
-      description: "Participated in research activities and collaborative projects."
     },
     {
       role: "Theatre Artist",

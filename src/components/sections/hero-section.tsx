@@ -8,12 +8,12 @@ export function HeroSection() {
   // Local data instead of using context
   const personalInfo = {
     name: "Devrajsinh Gohil",
-    title: "Aspiring Buniess Analyst",
+    title: "Project Coordinator",
     email: "djgohil2012@gmail.com",
     phone: "+91-8160529391",
     location: "Rajkot, Gujarat, India",
     linkedin: "linkedin.com/in/devrajsinh2012/",
-    bio: "Analytical Computer Engineering student with demonstrated experience in requirements gathering, stakeholder management, and data-driven process optimization. Proven track record of conducting 200+ stakeholder interviews, implementing operational improvements achieving 30% efficiency gains, and translating business needs into technical specifications. Seeking Business Analyst internship to leverage strong analytical skills and hands-on experience in driving organizational excellence"
+    bio: "Computer Engineering graduate working as a Project Coordinator, bridging technical execution and business strategy. Experienced in agile delivery, stakeholder management, and translating complex requirements into actionable plans — driven by the belief that great products live at the intersection of people, process, and purpose."
   };
   
   const typingRef = useRef<HTMLSpanElement>(null);

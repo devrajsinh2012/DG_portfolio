@@ -18,7 +18,7 @@ export function ContactSection() {
     phone: "+91-8160529391",
     location: "Rajkot, Gujarat, India",
     linkedin: "linkedin.com/in/devrajsinh2012/",
-    resumeUrl: "https://drive.google.com/file/d/1TdFy_gL_1CclA9OiDNQYjKFuEifVORFF/view?usp=sharing"
+    resumeUrl: "https://drive.google.com/file/d/1vTrvd6heawMk6rik6WhBVNJyVJvcvxDF/view?usp=sharing"
   };
   
   const socialLinks = [

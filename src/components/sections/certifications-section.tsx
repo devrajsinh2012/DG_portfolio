@@ -9,6 +9,42 @@ export function CertificationsSection() {
   // Local data
   const certificationsData = [
     {
+      "name": "AWS Cloud Essentials",
+      "issuer": "Amazon Web Services (AWS)",
+      "date": "2025",
+      "description": "Demonstrated understanding of core AWS cloud concepts, services, security, architecture, pricing, and support models.",
+      "skills": ["Cloud Computing", "AWS Core Services", "Cloud Architecture", "Cloud Security"],
+      "imageUrl": "",
+      "url": "https://aws.amazon.com/"
+    },
+    {
+      "name": "Nvidia: RAG Agents with LLMs",
+      "issuer": "Nvidia Deep Learning Institute",
+      "date": "2025",
+      "description": "Completed practical training in building Retrieval-Augmented Generation (RAG) agents utilizing Large Language Models.",
+      "skills": ["Large Language Models (LLMs)", "Retrieval-Augmented Generation (RAG)", "AI Agents", "System Design"],
+      "imageUrl": "",
+      "url": "https://www.nvidia.com/en-us/training/"
+    },
+    {
+      "name": "PMI Agile Requirements Foundations",
+      "issuer": "Project Management Institute (PMI)",
+      "date": "2025",
+      "description": "Acquired foundational knowledge in managing and validating requirements in an agile project environment.",
+      "skills": ["Agile Requirements", "Agile Methodologies", "Scrum", "Business Analysis", "Stakeholder Collaboration"],
+      "imageUrl": "",
+      "url": "https://www.pmi.org/"
+    },
+    {
+      "name": "IBM Project Management Fundamentals",
+      "issuer": "IBM (offered through Coursera)",
+      "date": "2025",
+      "description": "Completed professional training in project lifecycle management, budgeting, scheduling, risk analysis, and team coordination.",
+      "skills": ["Project Coordination", "Scheduling & Budgeting", "Risk Management", "Project Lifecycle"],
+      "imageUrl": "",
+      "url": "https://www.coursera.org/"
+    },
+    {
       "name": "Google AI Essentials",
       "issuer": "Coursera.org",
       "date": "2024",

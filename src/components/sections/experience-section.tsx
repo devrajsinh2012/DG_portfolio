@@ -8,39 +8,39 @@ export function ExperienceSection() {
   // Local data
   const experienceData = [
     {
-      company: "Integers: Beyond the Decimal Point",
-      position: "Chief Operating Officer ",
-      period: "Nov 2024 - Mar 2025",
-      description: "Leading operations and strategic initiatives to drive business growth.",
+      company: "codExalters techlabs",
+      position: "Project Coordinator",
+      period: "Oct 2025 - Present",
+      description: "Leading project coordination, sprint planning, and risk mitigation to ensure successful delivery.",
       achievements: [
-        "Process Optimization Expert: Analyzed and redesigned operational workflows across 5+ departments, delivering 30% efficiency improvements through systematic process mapping and stakeholder collaboration",
-        "Data-Driven Performance Management: Developed comprehensive KPI frameworks and performance metrics to monitor operational effectiveness, enabling real-time decision-making and stakeholder satisfaction tracking",
-        "Cross-Functional Leadership: Led requirements gathering initiatives across multiple teams, achieving 95% on-time delivery through strategic planning and agile project coordination"
+        "Tracked tasks, risks, and dependencies across teams to ensure timely delivery and clear visibility into project health.",
+        "Ensured alignment on priorities through regular coordination meetings, progress reporting, and structured documentation of blockers and decisions.",
+        "Facilitated sprint planning and review sessions, improving team velocity and delivery cadence across concurrent projects.",
+        "Bridged technical and non-technical stakeholders, translating product requirements into well-defined task assignments and acceptance criteria."
       ],
-      technologies: ["Process mapping", "KPI development", "Performance analytics" , "stakeholder management" ,  "Strategic Planning", "Operations Management"]
+      technologies: ["Project Coordination", "Agile & Scrum", "Sprint Planning", "Risk Tracking", "Stakeholder Management", "Jira", "Trello", "ClickUp"]
+    },
+    {
+      company: "Integers: Beyond the Decimal Point",
+      position: "Operation Lead",
+      period: "Oct 2024 - Mar 2025",
+      description: "Managed departmental workflows, requirement gathering, and client project alignment.",
+      achievements: [
+        "Mapped departmental workflows via stakeholder interviews and analyzed operational data in Excel to surface key KPIs for leadership decisions.",
+        "Served as Business Analyst point of contact on client projects, driving requirement gathering, scope alignment, and workflow documentation."
+      ],
+      technologies: ["Process mapping", "KPI development", "Excel data analysis", "Stakeholder interviews", "BA point of contact"]
     },
     {
       company: "ORSCOPE TECHNOLOGIES",
       position: "Project Management Intern",
-      period: "Apr 2024 - Jun 2024",
-      description: "Contributed to project management processes and product development initiatives.",
+      period: "Mar 2024 - Sep 2024",
+      description: "Coordinated active projects, managed deliverables, and facilitated Scrum touchpoints.",
       achievements: [
-        "Requirements Engineering Specialist: Conducted 30+stakeholder interviews to gather and document comprehensive business requirements, accelerating development cycles by 20% through clear specification documentation",
-        "Data-Driven Product Optimization: Executed A/B testing campaigns and analyzed user behavior data, resulting in 15% increase in user engagement through evidence-based feature improvements",
-        "Accelerated the delivery of innovative products to market"
+        "Coordinated 3 active projects in Trello — managed agendas, tracked deliverables, and synthesized insights from 15 stakeholder interviews.",
+        "Facilitated Scrum touchpoints, synchronized backlogs, clarified dependencies, and contributed A/B testing analysis via Google Analytics."
       ],
-      technologies: ["Market Research", "Product Development", "Technical specification writing"]
-    },
-    {
-      company: "Self Employed",
-      position: "Teacher",
-      period: "Jun 2022 - May 2024",
-      description: "Designed and delivered educational content for primary grade students.",
-      achievements: [
-        "Created and implemented effective lessons for primary grades",
-        "Empowered student success through engaging and interactive teaching methods"
-      ],
-      technologies: ["Curriculum Development", "Interactive Learning", "Student Engagement"]
+      technologies: ["Trello", "Scrum Touchpoints", "Backlog Synchronization", "A/B Testing", "Google Analytics", "Stakeholder Interviews"]
     }
   ];
   

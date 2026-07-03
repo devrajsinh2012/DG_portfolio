@@ -8,9 +8,9 @@ export function AboutSection() {
   // Local data
   const aboutData = {
     aboutText: [
-      "Hello! I'm Devrajsinh, an aspiring Business Analyst and tech-driven professional with hands-on experience in stakeholder management, requirements gathering, and process optimization. I bridge the gap between business objectives and technical solutions, translating complex requirements into actionable insights that drive organizational growth.",
-      "With experience conducting 30+ stakeholder interviews and implementing operational improvements achieving 30% efficiency gains, I thrive at the intersection of technology, business strategy, and data analytics. My background spans from leading cross-functional teams to developing user-centric applications with ML integration.",
-      "What sets me apart is my analytical mindset combined with practical implementation skills. I leverage data visualization tools like Tableau and Power BI, along with SQL and statistical analysis, to uncover insights that fuel strategic decisions and operational excellence.",
+      "Hello! I'm Devrajsinh, a Project Coordinator and tech-driven professional with hands-on experience in agile delivery, stakeholder management, and translating complex requirements into actionable plans. I bridge the gap between business objectives and technical execution, ensuring that projects are delivered successfully and align with strategic goals.",
+      "With experience conducting stakeholder interviews, managing sprint planning, and coordinating cross-functional teams, I thrive at the intersection of people, process, and technology. My background spans from leading operational initiatives to developing user-centric applications with ML integration.",
+      "What sets me apart is my analytical mindset combined with practical execution skills. I leverage tools like Jira, Trello, and Excel, along with data analytics, to maintain clear visibility into project health and streamline workflows for enhanced team velocity.",
       "Beyond my professional pursuits, I'm passionate about innovation leadership as Chair of Innovation Vertical at Young Indians, and I find creative balance through theatre performances with Utsav Natak Academy – experiences that enhance my collaborative and communication skills."
     ],
     strengths: [

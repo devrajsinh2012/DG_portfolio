@@ -9,6 +9,26 @@ export function ProjectsSection() {
   // Local data
   const projectsData = [
     {
+      title: "NIYOPLAN -- PROJECT MANAGEMENT APP",
+      description: "Full-stack multi-tenant PM app with Kanban, Gantt, sprint/backlog, and goal-tracking views — deployed on Vercel with Supabase PostgreSQL. Integrated Groq AI tooling, Google Drive attachments, and a personal Today view; containerized with Docker, tested with Vitest.",
+      technologies: ["Next.js 15", "React 19", "Supabase", "Tailwind CSS", "Docker", "Vitest", "Groq AI", "Google Drive API"],
+      category: "Project Management",
+      role: "Full Stack Developer",
+      outcome: "Successfully designed and built a containerized, multi-tenant project management platform with advanced agile boards and AI-assisted workflows.",
+      sourceCodeUrl: "https://github.com/devrajsinh2012",
+      demoUrl: ""
+    },
+    {
+      title: "MEXAR -- MULTIMODAL EXPLAINABLE AI & REASONER",
+      description: "RAG-based agent platform with hybrid semantic/keyword search, cross-encoder reranking, and faithfulness scoring to minimize hallucinations. Supports multimodal input (audio via Whisper, image via Vision), inline source citations, and domain guardrails.",
+      technologies: ["Python", "FastAPI", "React", "Hugging Face", "Vercel", "RAG", "Whisper", "Vision Models"],
+      category: "AI & Machine Learning",
+      role: "AI Engineer",
+      outcome: "Deployed a production-ready explainable AI platform with semantic verification and multimodal capabilities.",
+      sourceCodeUrl: "https://github.com/devrajsinh2012",
+      demoUrl: ""
+    },
+    {
       title: "Analyzing Startup Fundraising Deals from Crunchbase",
       description: "Comprehensive data analysis project examining startup fundraising patterns, investment trends, and market dynamics using Crunchbase dataset. Performed statistical analysis, trend identification, and predictive modeling to uncover insights about successful fundraising strategies and market opportunities.",
       technologies: ["Python", "Pandas", "SQLite", "Jupyter Notebook", "Data Visualization", "Statistical Analysis"],
@@ -48,7 +68,7 @@ export function ProjectsSection() {
       technologies: ["Python", "TensorFlow", "CNN", "LSTM", "SVM", "Computer Vision", "Deep Learning", "OpenCV"],
       category: "AI & Machine Learning",
       role: "ML Engineer",
-      outcome: "Achieved 92% accuracy in sign language recognition with real-time processing capabilities, enabling seamless communication for 500+ regional sign language gestures.",
+      outcome: "Achieved 92% accuracy in sign language recognition with real-time processing capabilities. Published in the 2025 IEEE International Conference on Communication Networks and Computing (CNC): 'Comprehensive evaluation of deep learning pipelines for gujarati sign language recognition'.",
       sourceCodeUrl: "https://github.com/devrajsinh2012",
       demoUrl: ""
     },
@@ -127,7 +147,7 @@ export function ProjectsSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-100px" });
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
-  const [filter, setFilter] = useState<string | null>("Business Analysis");
+  const [filter, setFilter] = useState<string | null>("Project Management");
 
   // Define clean categories for filtering
   const categories = [
